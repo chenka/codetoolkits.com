@@ -1,0 +1,230 @@
+---
+const title = "Base64 Encode/Decode Tool - Free Online Encoder and Decoder"
+const description =
+  "Use our free online Base64 Encode/Decode tool to easily encode and decode text. Perfect for developers, data analysts, and anyone curious about Base64 encoding."
+const currentYear = new Date().getFullYear()
+---
+
+<div class="container mx-auto p-4 max-w-2xl">
+  <h1 class="text-3xl font-bold mb-6 text-center">Base64 Encode/Decode Tool</h1>
+  <textarea
+    id="input"
+    class="w-full p-4 border rounded mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 h-60"
+    placeholder="Enter text to encode/decode"></textarea>
+  <div class="flex justify-center space-x-4 mb-4">
+    <button
+      id="encode"
+      class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded shadow"
+      >Encode</button
+    >
+    <button
+      id="decode"
+      class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded shadow"
+      >Decode</button
+    >
+  </div>
+  <h2 class="text-2xl font-semibold mb-2">Output:</h2>
+  <textarea
+    id="output"
+    class="w-full p-4 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 h-60"
+    placeholder="Output will appear here"
+    readonly></textarea>
+  <div class="flex justify-center space-x-4 mt-4">
+    <button
+      id="copy"
+      class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded shadow w-48"
+      >Copy to Clipboard</button
+    >
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 py-6">
+    <!-- Intro Section -->
+    <section class="mb-8">
+      <p class="text-lg">
+        Welcome to our
+        <strong>Base64 Encode/Decode Tool</strong> - the fastest and easiest way
+        to convert text and binary data to and from Base64 format. Whether you're
+        protecting sensitive information or simply ensuring data integrity, our free
+        online Base64 tool provides a user-friendly interface with lightning-fast
+        results.
+      </p>
+    </section>
+
+    <!-- What is Base64? -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">What Is Base64 Encoding?</h2>
+      <p class="mb-4">
+        <strong>Base64 encoding</strong> is a method of representing binary data
+        (such as images, files, or other media) in a textual format. It takes the
+        original data, splits it into smaller chunks, and converts it into a series
+        of ASCII characters. This process ensures that the data can be safely transmitted
+        and stored in systems that only handle textual information. By encoding data
+        in Base64, you reduce the risk of corruption that may occur if raw binary
+        data is sent through email or other text-based protocols.
+      </p>
+    </section>
+
+    <!-- Why Use Base64? -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Why Use Base64?</h2>
+      <ul class="list-disc ml-8 space-y-2">
+        <li>
+          <strong>Data Integrity</strong> - When sharing files via text-based channels,
+          Base64 helps preserve the original content without alterations or errors.
+        </li>
+        <li>
+          <strong>Compatibility</strong> - Email clients, web APIs, and certain databases
+          often require ASCII-friendly data. Base64 encoding ensures maximum compatibility
+          across platforms.
+        </li>
+        <li>
+          <strong>Security</strong> - While not a form of encryption, Base64 obscures
+          data to a certain extent, preventing casual observers from easily reading
+          it.
+        </li>
+        <li>
+          <strong>Efficiency</strong> - Base64 provides a compact, standardized format
+          ideal for embedding data in HTML, CSS, or JSON.
+        </li>
+      </ul>
+    </section>
+
+    <!-- How to Use the Tool -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">
+        How to Use Our Base64 Encode/Decode Tool
+      </h2>
+      <ol class="list-decimal ml-8 space-y-2">
+        <li>
+          <strong>Paste or Type Your Data</strong> - Enter your text or binary file
+          content into the input field.
+        </li>
+        <li>
+          <strong>Choose Encode or Decode</strong> - Select whether you want to convert
+          your data <em>to Base64</em> or <em>from Base64</em>.
+        </li>
+        <li>
+          <strong>Click the Button</strong> - Press the <em>"Encode"</em> or <em
+            >"Decode"</em
+          > button and watch the result appear instantly.
+        </li>
+        <li>
+          <strong>Copy or Download</strong> - Copy the converted string or download
+          the file output whichever suits your needs.
+        </li>
+      </ol>
+      <p class="mt-4">
+        Our tool is designed for effortless usage. We've optimized it for speed,
+        reliability, and privacy, ensuring your data is processed securely
+        without being stored on our servers.
+      </p>
+    </section>
+
+    <!-- Benefits -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">
+        Top Benefits of Our Base64 Tool
+      </h2>
+      <ul class="list-disc ml-8 space-y-2">
+        <li>
+          <strong>Free & Unlimited</strong> - Encode or decode as much data as you
+          like without any cost.
+        </li>
+        <li>
+          <strong>Browser-Based</strong> - No software installation required. Access
+          our tool online anytime, anywhere.
+        </li>
+        <li>
+          <strong>Lightning-Fast Conversion</strong> - Experience instant results,
+          thanks to our efficient conversion algorithms.
+        </li>
+        <li>
+          <strong>Safe & Secure</strong> - We prioritize your privacy - your data
+          stays confidential and is never logged.
+        </li>
+        <li>
+          <strong>User-Friendly Interface</strong> - Enjoy a clean, intuitive layout
+          for quick, hassle-free use.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Common Use Cases -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Common Use Cases</h2>
+      <ul class="list-disc ml-8 space-y-2">
+        <li>
+          <strong>Embedding Images</strong> - Easily include images directly in HTML,
+          CSS, or JavaScript files.
+        </li>
+        <li>
+          <strong>API Interactions</strong> - Safely transfer data in text format
+          over RESTful APIs.
+        </li>
+        <li>
+          <strong>Email Attachments</strong> - Encode binary files like PDFs or images
+          for reliable email delivery.
+        </li>
+        <li>
+          <strong>Obfuscation</strong> - Add a layer of complexity to sensitive strings
+          like user credentials before sending them to the server.
+        </li>
+      </ul>
+    </section>
+
+    <!-- CTA -->
+    <section>
+      <p class="text-lg font-medium">
+        Try our Base64 Encode/Decode Tool today and simplify your data
+        conversion process. Whether you're a developer integrating encoded
+        assets into web applications or an everyday user looking to protect
+        files during transit, our tool offers a secure, straightforward solution
+        you can rely on. Get started now - no registration or download required!
+      </p>
+    </section>
+  </main>
+
+  <footer class="bg-white shadow mt-8">
+    <div class="max-w-7xl mx-auto px-4 py-4 text-center">
+      <p class="text-sm text-gray-500">
+        &copy; <span id="year">{currentYear}</span> codetoolkits.com. All rights
+        reserved.
+      </p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.getElementById("encode").addEventListener("click", encodeText)
+  document.getElementById("decode").addEventListener("click", decodeText)
+  document.getElementById("copy").addEventListener("click", copyToClipboard)
+
+  function encodeText() {
+    const input = document.getElementById("input").value
+    const output = btoa(input)
+    document.getElementById("output").value = output
+  }
+
+  function decodeText() {
+    const input = document.getElementById("input").value
+    try {
+      const output = atob(input)
+      document.getElementById("output").value = output
+    } catch (e) {
+      alert("Invalid Base64 string")
+    }
+  }
+
+  function copyToClipboard() {
+    const output = document.getElementById("output")
+    output.select()
+    document.execCommand("copy")
+
+    const copyButton = document.getElementById("copy")
+    const originalText = copyButton.textContent
+    copyButton.textContent = "Copied"
+    setTimeout(() => {
+      copyButton.textContent = originalText
+    }, 2000)
+  }
+</script>
