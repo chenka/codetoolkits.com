@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro"
+import CopyToClipboardButton from '../../components/CopyToClipboardButton.astro';
 
 const title = "Base64 Encode/Decode Tool - Free Online Encoder and Decoder"
 const description =
@@ -40,11 +41,7 @@ const description =
       placeholder="Output will appear here"
       readonly></textarea>
     <div class="flex justify-center space-x-4 mt-4">
-      <button
-        id="copy"
-        class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded shadow w-48"
-        >Copy to Clipboard</button
-      >
+      <CopyToClipboardButton selector="#output" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded shadow w-48" />
     </div>
 
     <main class="max-w-7xl mx-auto px-4 py-6">
@@ -197,37 +194,28 @@ const description =
   </div>
 
   <script>
-    document.getElementById("encode").addEventListener("click", encodeText)
-    document.getElementById("decode").addEventListener("click", decodeText)
-    document.getElementById("copy").addEventListener("click", copyToClipboard)
+    const encodeButton = document.getElementById("encode") as HTMLButtonElement;
+    const decodeButton = document.getElementById("decode") as HTMLButtonElement;
+    const inputElement = document.getElementById("input") as HTMLInputElement;
+    const outputElement = document.getElementById("output") as HTMLTextAreaElement;
 
-    function encodeText() {
-      const input = document.getElementById("input").value
-      const output = btoa(input)
-      document.getElementById("output").value = output
+    encodeButton.addEventListener("click", encodeText);
+    decodeButton.addEventListener("click", decodeText);
+
+    function encodeText(): void {
+      const input: string = inputElement.value;
+      const output: string = btoa(input);
+      outputElement.value = output;
     }
 
-    function decodeText() {
-      const input = document.getElementById("input").value
+    function decodeText(): void {
+      const input: string = inputElement.value;
       try {
-        const output = atob(input)
-        document.getElementById("output").value = output
+        const output: string = atob(input);
+        outputElement.value = output;
       } catch (e) {
-        alert("Invalid Base64 string")
+        alert("Invalid Base64 string");
       }
-    }
-
-    function copyToClipboard() {
-      const output = document.getElementById("output")
-      output.select()
-      document.execCommand("copy")
-
-      const copyButton = document.getElementById("copy")
-      const originalText = copyButton.textContent
-      copyButton.textContent = "Copied"
-      setTimeout(() => {
-        copyButton.textContent = originalText
-      }, 2000)
     }
   </script>
 </Layout>

@@ -3,12 +3,13 @@ import type { HTMLAttributes } from 'astro/types';
 
 interface Props extends HTMLAttributes<'button'> {
   selector: string | undefined;
+  class?: string;
 }
 
-const { selector } = Astro.props;
+const { selector, class: customClass } = Astro.props;
 ---
 
-<button id="copyButton" data-selector={selector}>Copy to Clipboard</button>
+<button id="copyButton" data-selector={selector} class={` ${customClass || ''}`}>Copy to Clipboard</button>
 <script>
   const copyButton = document.getElementById('copyButton') as HTMLButtonElement;
   const originalButtonText = copyButton.innerText;
@@ -19,18 +20,15 @@ const { selector } = Astro.props;
         console.error('Selector is undefined or empty');
         return
     }
-    const elementToCopy = document.querySelector(selector) as HTMLElement;
+    const elementToCopy = document.querySelector(selector) as HTMLTextAreaElement;
     if (elementToCopy) {
-      const textToCopy: string = elementToCopy.innerText;
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        console.log('Text copied to clipboard');
-        copyButton.innerText = 'Copied';
-        setTimeout(() => {
-          copyButton.innerText = originalButtonText;
-        }, 2000);
-      }).catch((error: Error) => {
-        console.error('Error copying text: ', error);
-      });
+      elementToCopy.select();
+      document.execCommand("copy");
+      console.log('Text copied to clipboard');
+      copyButton.innerText = 'Copied';
+      setTimeout(() => {
+        copyButton.innerText = originalButtonText;
+      }, 2000);
     } else {
       console.error('Element not found for selector:', selector);
     }
