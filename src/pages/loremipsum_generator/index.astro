@@ -1,10 +1,66 @@
 ---
 import CopyToClipboardButton from "../../components/CopyToClipboardButton.astro"
 ---
-<p id="copyme">Lorem ipsum</p>
-<h1>Lorem Ipsum</h1>
-<CopyToClipboardButton selector="#copyme" />
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-4 text-center">Lorem Ipsum Generator</h1>
+  <div class="bg-white shadow-md rounded-lg p-4 mb-6">
+    <div class="mb-4">
+      <label for="paragraphs" class="block text-sm font-medium text-gray-700">Amount of Paragraphs</label>
+      <input type="range" id="paragraphs" class="mt-1 block w-full" min="1" max="10" value="7" />
+      <span id="paragraphValue" class="block text-center mt-2">7</span>
+    </div>
+    <div id="output" class="w-full h-screen p-2 border border-gray-300 rounded mb-4 overflow-auto" style="white-space: pre-wrap;">Generated text will appear here...</div>
+    <div class="flex justify-center">
+      <CopyToClipboardButton selector="#output" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-48" />
+    </div>
+  </div>
+</div>
 
 <script>
-  
+  const wordList = [
+    "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do",
+    "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore", "magna", "aliqua", "Ut",
+    "enim", "ad", "minim", "veniam", "quis", "nostrud", "exercitation", "ullamco", "laboris", "nisi",
+    "aliquip", "ex", "ea", "commodo", "consequat", "Duis", "aute", "irure", "in", "reprehenderit",
+    "voluptate", "velit", "esse", "cillum", "dolore", "eu", "fugiat", "nulla", "pariatur", "Excepteur",
+    "sint", "occaecat", "cupidatat", "non", "proident", "sunt", "in", "culpa", "qui", "officia",
+    "deserunt", "mollit", "anim", "id", "est", "laborum"
+  ];
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const paragraphInput = document.getElementById('paragraphs') as HTMLInputElement;
+    const paragraphValueDisplay = document.getElementById('paragraphValue');
+    if (paragraphValueDisplay) {
+      paragraphValueDisplay.textContent = paragraphInput.value;
+    }
+    paragraphInput.addEventListener('input', () => {
+      if (paragraphValueDisplay) {
+        paragraphValueDisplay.textContent = paragraphInput.value;
+      }
+      generateLoremIpsum();
+    });
+    generateLoremIpsum();
+  });
+
+  function generateLoremIpsum(): void {
+    const paragraphCount = parseInt((document.getElementById('paragraphs') as HTMLInputElement).value) || 7;
+    const outputDiv = document.getElementById('output');
+    if (outputDiv) {
+      outputDiv.textContent = generateParagraphs(paragraphCount);
+    }
+  }
+
+  function generateRandomSentence(): string {
+    const sentenceLength = Math.floor(Math.random() * 10) + 5; // Random sentence length between 5 and 15 words
+    const sentence = Array.from({ length: sentenceLength }, () => wordList[Math.floor(Math.random() * wordList.length)]);
+    return sentence.join(' ') + '.';
+  }
+
+  function generateParagraphs(count: number): string {
+    return Array.from({ length: count }, () => {
+      const paragraphLength = Math.floor(Math.random() * 5) + 3; // Random paragraph length between 3 and 8 sentences
+      const paragraph = Array.from({ length: paragraphLength }, generateRandomSentence);
+      return paragraph.join(' ');
+    }).join('\n\n');
+  }
 </script>
