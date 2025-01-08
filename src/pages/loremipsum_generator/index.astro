@@ -1,66 +1,245 @@
 ---
 import CopyToClipboardButton from "../../components/CopyToClipboardButton.astro"
 ---
+
 <div class="container mx-auto p-6">
-  <h1 class="text-3xl font-bold mb-4 text-center">Lorem Ipsum Generator</h1>
+  <header class="bg-blue-600 text-white py-6">
+    <div class="container mx-auto text-center">
+      <h1 class="text-3xl font-bold">Lorem Ipsum Generator</h1>
+      <p class="text-lg mt-2">Create Custom Placeholder Text Easily</p>
+    </div>
+  </header>
   <div class="bg-white shadow-md rounded-lg p-4 mb-6">
     <div class="mb-4">
-      <label for="paragraphs" class="block text-sm font-medium text-gray-700">Amount of Paragraphs</label>
-      <input type="range" id="paragraphs" class="mt-1 block w-full" min="1" max="10" value="7" />
+      <label for="paragraphs" class="block text-sm font-medium text-gray-700"
+        >Amount of Paragraphs</label
+      >
+      <input
+        type="range"
+        id="paragraphs"
+        class="mt-1 block w-full"
+        min="1"
+        max="10"
+        value="7"
+      />
       <span id="paragraphValue" class="block text-center mt-2">7</span>
     </div>
-    <div id="output" class="w-full h-screen p-2 border border-gray-300 rounded mb-4 overflow-auto" style="white-space: pre-wrap;">Generated text will appear here...</div>
-    <div class="flex justify-center">
-      <CopyToClipboardButton selector="#output" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-48" />
+    <div class="flex justify-center mb-4">
+      <CopyToClipboardButton
+        selector="#output"
+        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-48"
+      />
+    </div>
+    <div
+      id="output"
+      class="w-full h-screen p-2 border border-gray-300 rounded mb-4 overflow-auto"
+      style="white-space: pre-wrap;"
+    >
+      Generated text will appear here...
     </div>
   </div>
+  <article class="container mx-auto py-10 px-4">
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">
+        Generate High-Quality Lorem Ipsum Text in Seconds
+      </h2>
+      <p class="text-lg mb-6">
+        Welcome to the <strong>Lorem Ipsum Generator App</strong>, your go-to
+        tool for creating professional placeholder text effortlessly. Choose the
+        number of paragraphs you need, and we'll generate flawless placeholder
+        content in an instant.
+      </p>
+    </section>
+    <section class="mb-8">
+      <h3 class="text-xl font-semibold mb-4">Key Features</h3>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>
+          Customizable Paragraphs: Select the exact number of paragraphs you
+          need.
+        </li>
+        <li>
+          Efficient and User-Friendly: Generate placeholder text quickly with a
+          streamlined, intuitive interface.
+        </li>
+        <li>
+          Copy-Ready Output: Get perfectly formatted text ready for your
+          projects.
+        </li>
+        <li>
+          Responsive Design: Access the generator on any device, from desktop to
+          mobile.
+        </li>
+      </ul>
+    </section>
+    <section class="mb-8">
+      <h3 class="text-xl font-semibold mb-4">Why Use Lorem Ipsum Text?</h3>
+      <p class="text-lg mb-4">
+        Lorem Ipsum is a popular tool among designers and developers because it
+        helps:
+      </p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>
+          Focus on Design: Emphasize layout and design without distractions.
+        </li>
+        <li>
+          Save Time: Instantly fill text areas with realistic-length paragraphs.
+        </li>
+        <li>Enhance Prototypes: Create visually appealing mockups.</li>
+      </ul>
+    </section>
+    <section class="mb-8">
+      <h3 class="text-xl font-semibold mb-4">
+        How to Use the Lorem Ipsum Generator
+      </h3>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li>Choose the number of paragraphs using the slider or input box.</li>
+        <li>Click the "Generate" button to create your Lorem Ipsum text.</li>
+        <li>Copy and paste the text into your project.</li>
+      </ol>
+    </section>
+    <section class="mb-8">
+      <h3 class="text-xl font-semibold mb-4">
+        Frequently Asked Questions (FAQs)
+      </h3>
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-bold">What is Lorem Ipsum?</h4>
+          <p>
+            Lorem Ipsum is dummy text used as a placeholder in publishing and
+            design industries.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-bold">Can I customize the number of paragraphs?</h4>
+          <p>Yes! Choose the exact number of paragraphs you need.</p>
+        </div>
+        <div>
+          <h4 class="font-bold">Is Lorem Ipsum real Latin?</h4>
+          <p>
+            It has roots in classical Latin literature but is altered to be
+            nonsensical.
+          </p>
+        </div>
+      </div>
+    </section>
+  </article>
 </div>
 
 <script>
   const wordList = [
-    "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do",
-    "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore", "magna", "aliqua", "Ut",
-    "enim", "ad", "minim", "veniam", "quis", "nostrud", "exercitation", "ullamco", "laboris", "nisi",
-    "aliquip", "ex", "ea", "commodo", "consequat", "Duis", "aute", "irure", "in", "reprehenderit",
-    "voluptate", "velit", "esse", "cillum", "dolore", "eu", "fugiat", "nulla", "pariatur", "Excepteur",
-    "sint", "occaecat", "cupidatat", "non", "proident", "sunt", "in", "culpa", "qui", "officia",
-    "deserunt", "mollit", "anim", "id", "est", "laborum"
-  ];
+    "Lorem",
+    "ipsum",
+    "dolor",
+    "sit",
+    "amet",
+    "consectetur",
+    "adipiscing",
+    "elit",
+    "sed",
+    "do",
+    "eiusmod",
+    "tempor",
+    "incididunt",
+    "ut",
+    "labore",
+    "et",
+    "dolore",
+    "magna",
+    "aliqua",
+    "Ut",
+    "enim",
+    "ad",
+    "minim",
+    "veniam",
+    "quis",
+    "nostrud",
+    "exercitation",
+    "ullamco",
+    "laboris",
+    "nisi",
+    "aliquip",
+    "ex",
+    "ea",
+    "commodo",
+    "consequat",
+    "Duis",
+    "aute",
+    "irure",
+    "in",
+    "reprehenderit",
+    "voluptate",
+    "velit",
+    "esse",
+    "cillum",
+    "dolore",
+    "eu",
+    "fugiat",
+    "nulla",
+    "pariatur",
+    "Excepteur",
+    "sint",
+    "occaecat",
+    "cupidatat",
+    "non",
+    "proident",
+    "sunt",
+    "in",
+    "culpa",
+    "qui",
+    "officia",
+    "deserunt",
+    "mollit",
+    "anim",
+    "id",
+    "est",
+    "laborum",
+  ]
 
-  window.addEventListener('DOMContentLoaded', (event) => {
-    const paragraphInput = document.getElementById('paragraphs') as HTMLInputElement;
-    const paragraphValueDisplay = document.getElementById('paragraphValue');
+  window.addEventListener("DOMContentLoaded", (event) => {
+    const paragraphInput = document.getElementById(
+      "paragraphs"
+    ) as HTMLInputElement
+    const paragraphValueDisplay = document.getElementById("paragraphValue")
     if (paragraphValueDisplay) {
-      paragraphValueDisplay.textContent = paragraphInput.value;
+      paragraphValueDisplay.textContent = paragraphInput.value
     }
-    paragraphInput.addEventListener('input', () => {
+    paragraphInput.addEventListener("input", () => {
       if (paragraphValueDisplay) {
-        paragraphValueDisplay.textContent = paragraphInput.value;
+        paragraphValueDisplay.textContent = paragraphInput.value
       }
-      generateLoremIpsum();
-    });
-    generateLoremIpsum();
-  });
+      generateLoremIpsum()
+    })
+    generateLoremIpsum()
+  })
 
   function generateLoremIpsum(): void {
-    const paragraphCount = parseInt((document.getElementById('paragraphs') as HTMLInputElement).value) || 7;
-    const outputDiv = document.getElementById('output');
+    const paragraphCount =
+      parseInt(
+        (document.getElementById("paragraphs") as HTMLInputElement).value
+      ) || 7
+    const outputDiv = document.getElementById("output")
     if (outputDiv) {
-      outputDiv.textContent = generateParagraphs(paragraphCount);
+      outputDiv.textContent = generateParagraphs(paragraphCount)
     }
   }
 
   function generateRandomSentence(): string {
-    const sentenceLength = Math.floor(Math.random() * 10) + 5; // Random sentence length between 5 and 15 words
-    const sentence = Array.from({ length: sentenceLength }, () => wordList[Math.floor(Math.random() * wordList.length)]);
-    return sentence.join(' ') + '.';
+    const sentenceLength = Math.floor(Math.random() * 10) + 5 // Random sentence length between 5 and 15 words
+    const sentence = Array.from(
+      { length: sentenceLength },
+      () => wordList[Math.floor(Math.random() * wordList.length)]
+    )
+    return sentence.join(" ") + "."
   }
 
   function generateParagraphs(count: number): string {
     return Array.from({ length: count }, () => {
-      const paragraphLength = Math.floor(Math.random() * 5) + 3; // Random paragraph length between 3 and 8 sentences
-      const paragraph = Array.from({ length: paragraphLength }, generateRandomSentence);
-      return paragraph.join(' ');
-    }).join('\n\n');
+      const paragraphLength = Math.floor(Math.random() * 5) + 3 // Random paragraph length between 3 and 8 sentences
+      const paragraph = Array.from(
+        { length: paragraphLength },
+        generateRandomSentence
+      )
+      return paragraph.join(" ")
+    }).join("\n\n")
   }
 </script>
