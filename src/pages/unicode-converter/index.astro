@@ -294,18 +294,13 @@ const description =
 
       text = processedInput
     }
-
-    if (text) {
-      // Instead of replacing the input, just show the converted text in the output
-      convertTextToUnicode(text)
-
-      // Don't update the input field
-      // const inputElement = document.getElementById("inputText") as HTMLTextAreaElement
-      // if (inputElement) {
-      //   inputElement.value = text
-      //   convertTextToUnicode(text)
-      // }
+    // If no conversion was performed, use the input as-is
+    else {
+      text = unicodeInput
     }
+
+    // Always update the output with whatever we have
+    convertTextToUnicode(text)
   }
 
   function updateOutput(id: string, content: string) {
