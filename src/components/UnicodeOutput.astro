@@ -1,0 +1,300 @@
+---
+interface Props {
+  title?: string
+}
+
+const { title = "Output" } = Astro.props
+---
+
+<div class="bg-gray-50 border border-gray-200 rounded p-6">
+  <h2 class="text-xl font-semibold mb-4">{title}</h2>
+
+  <div id="outputFormats">
+    <h3 class="text-lg font-medium mb-2">Formats</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse mb-6">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border border-gray-300 px-4 py-2 text-left w-1/4"
+              >Format</th
+            >
+            <th class="border border-gray-300 px-4 py-2 text-left w-2/3"
+              >Value</th
+            >
+            <th class="border border-gray-300 px-4 py-2 text-center w-1/12"
+              >Copy</th
+            >
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">Character</td>
+            <td
+              id="outputChar"
+              class="border border-gray-300 px-4 py-2 font-mono break-all"></td>
+            <td class="border border-gray-300 px-2 py-2 text-center">
+              <button
+                class="copy-btn p-1 rounded bg-gray-200 hover:bg-gray-300 transition"
+                data-target="outputChar"
+                title="Copy to clipboard"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                  ></path>
+                </svg>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">Decimal</td>
+            <td
+              id="outputDecimal"
+              class="border border-gray-300 px-4 py-2 font-mono break-all"></td>
+            <td class="border border-gray-300 px-2 py-2 text-center">
+              <button
+                class="copy-btn p-1 rounded bg-gray-200 hover:bg-gray-300 transition"
+                data-target="outputDecimal"
+                title="Copy to clipboard"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                  ></path>
+                </svg>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">Hexadecimal</td>
+            <td
+              id="outputHex"
+              class="border border-gray-300 px-4 py-2 font-mono break-all"></td>
+            <td class="border border-gray-300 px-2 py-2 text-center">
+              <button
+                class="copy-btn p-1 rounded bg-gray-200 hover:bg-gray-300 transition"
+                data-target="outputHex"
+                title="Copy to clipboard"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                  ></path>
+                </svg>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2"
+              >HTML Entity (Decimal)</td
+            >
+            <td
+              id="outputHtmlDec"
+              class="border border-gray-300 px-4 py-2 font-mono break-all"></td>
+            <td class="border border-gray-300 px-2 py-2 text-center">
+              <button
+                class="copy-btn p-1 rounded bg-gray-200 hover:bg-gray-300 transition"
+                data-target="outputHtmlDec"
+                title="Copy to clipboard"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                  ></path>
+                </svg>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">HTML Entity (Hex)</td>
+            <td
+              id="outputHtmlHex"
+              class="border border-gray-300 px-4 py-2 font-mono break-all"></td>
+            <td class="border border-gray-300 px-2 py-2 text-center">
+              <button
+                class="copy-btn p-1 rounded bg-gray-200 hover:bg-gray-300 transition"
+                data-target="outputHtmlHex"
+                title="Copy to clipboard"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                  ></path>
+                </svg>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">JavaScript</td>
+            <td
+              id="outputJS"
+              class="border border-gray-300 px-4 py-2 font-mono break-all"></td>
+            <td class="border border-gray-300 px-2 py-2 text-center">
+              <button
+                class="copy-btn p-1 rounded bg-gray-200 hover:bg-gray-300 transition"
+                data-target="outputJS"
+                title="Copy to clipboard"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                  ></path>
+                </svg>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">CSS</td>
+            <td
+              id="outputCSS"
+              class="border border-gray-300 px-4 py-2 font-mono break-all"></td>
+            <td class="border border-gray-300 px-2 py-2 text-center">
+              <button
+                class="copy-btn p-1 rounded bg-gray-200 hover:bg-gray-300 transition"
+                data-target="outputCSS"
+                title="Copy to clipboard"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                  ></path>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Initialize copy buttons
+  document.addEventListener("DOMContentLoaded", () => {
+    const copyButtons = document.querySelectorAll(".copy-btn")
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const targetId = (button as HTMLElement).dataset.target
+        const targetElement = document.getElementById(targetId as string)
+
+        if (targetElement && targetElement.textContent) {
+          try {
+            await navigator.clipboard.writeText(targetElement.textContent)
+
+            // Visual feedback
+            const originalBg = (button as HTMLElement).classList.contains(
+              "bg-gray-200"
+            )
+              ? "bg-gray-200"
+              : "bg-gray-300"
+
+            // Create and show tooltip
+            const tooltip = document.createElement("div")
+            tooltip.textContent = "Copied!"
+            tooltip.className =
+              "absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 transition-opacity"
+            button.style.position = "relative"
+            button.appendChild(tooltip)
+
+            // Animate button
+            button.classList.remove(originalBg)
+            button.classList.add("bg-green-200")
+            button.classList.add("scale-110")
+
+            // Show tooltip
+            setTimeout(() => {
+              tooltip.classList.replace("opacity-0", "opacity-100")
+            }, 10)
+
+            // Reset everything
+            setTimeout(() => {
+              button.classList.remove("bg-green-200", "scale-110")
+              button.classList.add(originalBg)
+              tooltip.classList.replace("opacity-100", "opacity-0")
+
+              setTimeout(() => {
+                button.removeChild(tooltip)
+              }, 300) // Wait for fade out
+            }, 1000)
+          } catch (err) {
+            console.error("Failed to copy text: ", err)
+          }
+        }
+      })
+    })
+  })
+</script>
+
+<style>
+  .copy-btn {
+    transition: all 0.2s ease;
+  }
+
+  .scale-110 {
+    transform: scale(1.1);
+  }
+</style>

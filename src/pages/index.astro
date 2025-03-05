@@ -11,7 +11,7 @@ import Layout from "../layouts/Layout.astro"
 <Layout>
   <div
     id="container"
-    class="bg-gradient-to-r from-blue-50 to-green-50 min-h-screen flex items-center justify-center p-4"
+    class="bg-gradient-to-r from-blue-50 to-green-50 min-h-screen flex flex-col items-center justify-center p-4 gap-4"
   >
     <div
       class="max-w-sm w-full bg-white rounded-lg shadow-md p-6 transition-transform transform hover:shadow-xl hover:-translate-y-1 tool-card"
@@ -28,7 +28,22 @@ import Layout from "../layouts/Layout.astro"
       </a>
     </div>
     <div
-      class="max-w-sm w-full bg-white rounded-lg shadow-md p-6 transition-transform transform hover:shadow-xl hover:-translate-y-1 mt-4 tool-card"
+      class="max-w-sm w-full bg-white rounded-lg shadow-md p-6 transition-transform transform hover:shadow-xl hover:-translate-y-1 tool-card"
+    >
+      <a
+        href="/unicode-converter"
+        class="text-blue-600 hover:text-blue-800 transition-colors duration-200"
+      >
+        <h2 class="text-2xl font-bold mb-2">Unicode Converter</h2>
+        <p class="text-gray-700 text-base">
+          Convert between text and various Unicode formats. Supports
+          hexadecimal, decimal, HTML entities, JavaScript, and CSS escape
+          sequences.
+        </p>
+      </a>
+    </div>
+    <div
+      class="max-w-sm w-full bg-white rounded-lg shadow-md p-6 transition-transform transform hover:shadow-xl hover:-translate-y-1 tool-card"
     >
       <a
         href="/loremipsum_generator"
@@ -36,10 +51,10 @@ import Layout from "../layouts/Layout.astro"
       >
         <h2 class="text-2xl font-bold mb-2">Lorem Ipsum Generator</h2>
         <p class="text-gray-700 text-base">
-          Generate random Lorem Ipsum text for use in your projects. Customize the number of paragraphs to suit your needs.
+          Generate random Lorem Ipsum text for use in your projects. Customize
+          the number of paragraphs to suit your needs.
         </p>
       </a>
     </div>
   </div>
 </Layout>
-

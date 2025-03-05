@@ -1,0 +1,327 @@
+---
+// Unicode Converter Page
+import Layout from "../../layouts/Layout.astro"
+import UnicodeOutput from "../../components/UnicodeOutput.astro"
+
+const title = "Unicode Converter - Free Online Text to Unicode Tool"
+const description =
+  "Convert text to Unicode formats and Unicode to text with our free online tool. Supports multiple formats including hexadecimal, decimal, HTML entities, JavaScript, and CSS."
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta
+  name="keywords"
+  content="unicode, converter, text to unicode, unicode to text, hex, decimal, html entity, javascript, css, online tool"
+/>
+
+<Layout title="Unicode Converter">
+  <main class="container mx-auto px-4 py-8 max-w-4xl">
+    <h1 class="text-3xl font-bold mb-6">Unicode Converter</h1>
+
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold mb-3">Input</h2>
+      <textarea
+        id="inputText"
+        class="w-full h-32 p-3 border border-gray-300 rounded font-mono"
+        placeholder="Enter text or Unicode values (e.g., U+1F600 or \u1F600)"
+      ></textarea>
+
+      <div class="my-4 flex gap-4">
+        <label class="inline-flex items-center">
+          <input type="radio" name="inputType" value="text" class="mr-2" />
+          <span>Text to Unicode</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input
+            type="radio"
+            name="inputType"
+            value="unicode"
+            checked
+            class="mr-2"
+          />
+          <span>Unicode to Text</span>
+        </label>
+      </div>
+    </div>
+
+    <UnicodeOutput />
+
+    <!-- SEO Content Section -->
+    <section class="mt-12 prose max-w-none">
+      <h2 class="text-2xl font-semibold mb-4">What is Unicode?</h2>
+      <p>
+        Unicode is an international encoding standard that allows computers to
+        consistently represent and manipulate text from any writing system in
+        the world. It assigns a unique number (code point) to every character,
+        regardless of platform, program, or language.
+      </p>
+
+      <h2 class="text-2xl font-semibold mt-8 mb-4">
+        Why Use a Unicode Converter?
+      </h2>
+      <p>
+        A Unicode converter is essential for developers, linguists, and anyone
+        working with international text. Our tool helps you:
+      </p>
+      <ul class="list-disc ml-8 space-y-2">
+        <li>
+          <strong>Debug Text Issues</strong> - Identify and fix encoding problems
+          in your applications
+        </li>
+        <li>
+          <strong>Create Cross-Platform Content</strong> - Ensure text displays correctly
+          across different systems
+        </li>
+        <li>
+          <strong>Work with Special Characters</strong> - Convert emojis, mathematical
+          symbols, and characters from various languages
+        </li>
+        <li>
+          <strong>Generate Code</strong> - Get ready-to-use code snippets for HTML,
+          JavaScript, and CSS
+        </li>
+      </ul>
+
+      <h2 class="text-2xl font-semibold mt-8 mb-4">How to Use This Tool</h2>
+      <ol class="list-decimal ml-8 space-y-2">
+        <li>
+          <strong>Convert Text to Unicode</strong> - Enter any text and select "Text
+          to Unicode" to see its Unicode representation
+        </li>
+        <li>
+          <strong>Convert Unicode to Text</strong> - Paste Unicode values (U+1F600,
+          \u1F600, etc.) and select "Unicode to Text" to see the actual characters
+        </li>
+        <li>
+          <strong>Copy Results</strong> - Use the copy buttons to easily copy any
+          format to your clipboard
+        </li>
+      </ol>
+
+      <h2 class="text-2xl font-semibold mt-8 mb-4">
+        Supported Unicode Formats
+      </h2>
+      <ul class="list-disc ml-8 space-y-2">
+        <li>
+          <strong>Character</strong> - The actual character representation
+        </li>
+        <li>
+          <strong>Decimal</strong> - Unicode code points in decimal format
+        </li>
+        <li>
+          <strong>Hexadecimal</strong> - Unicode code points in hexadecimal format
+          (U+XXXX)
+        </li>
+        <li>
+          <strong>HTML Entity (Decimal)</strong> - HTML decimal entities (&#1234;)
+        </li>
+        <li>
+          <strong>HTML Entity (Hex)</strong> - HTML hexadecimal entities (&#x4D2;)
+        </li>
+        <li>
+          <strong>JavaScript</strong> - JavaScript Unicode escape sequences (\u1234)
+        </li>
+        <li><strong>CSS</strong> - CSS Unicode escape sequences (\1234)</li>
+      </ul>
+
+      <p class="mt-8">
+        Our Unicode Converter is completely free, works in your browser, and
+        processes all data locally - your text never leaves your computer.
+        Whether you're a developer working with internationalization, a linguist
+        studying different writing systems, or just curious about how text is
+        represented digitally, our tool provides a simple and efficient way to
+        convert between text and various Unicode formats.
+      </p>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const inputText = document.getElementById("inputText")
+    const inputTypeRadios = document.querySelectorAll('input[name="inputType"]')
+
+    if (inputText) {
+      inputText.addEventListener("input", performConversion)
+
+      // Add event listeners to radio buttons
+      inputTypeRadios.forEach((radio) => {
+        radio.addEventListener("change", performConversion)
+      })
+
+      // Initialize
+      performConversion()
+    }
+  })
+
+  function performConversion() {
+    const input = (document.getElementById("inputText") as HTMLTextAreaElement)
+      .value
+    const inputType = (
+      document.querySelector(
+        'input[name="inputType"]:checked'
+      ) as HTMLInputElement
+    )?.value
+
+    if (input.trim() === "") {
+      clearOutputs()
+      return
+    }
+
+    if (inputType === "text") {
+      convertTextToUnicode(input)
+    } else {
+      convertUnicodeToText(input)
+    }
+  }
+
+  function convertTextToUnicode(text: string) {
+    if (text.length === 0) {
+      clearOutputs()
+      return
+    }
+
+    // Display all characters in a table
+    let decimalOutput: number[] = []
+    let hexOutput: string[] = []
+    let htmlDecOutput: string[] = []
+    let htmlHexOutput: string[] = []
+    let jsOutput: string[] = []
+    let cssOutput: string[] = []
+    let charOutput: string[] = []
+
+    for (let i = 0; i < text.length; i++) {
+      const cp = text.codePointAt(i) || 0
+
+      // Skip the second part of surrogate pairs
+      if (
+        i > 0 &&
+        text.charCodeAt(i - 1) >= 0xd800 &&
+        text.charCodeAt(i - 1) <= 0xdbff
+      ) {
+        continue
+      }
+
+      charOutput.push(text.charAt(i))
+      decimalOutput.push(cp)
+      hexOutput.push("U+" + cp.toString(16).toUpperCase().padStart(4, "0"))
+      htmlDecOutput.push(`&#${cp};`)
+      htmlHexOutput.push(`&#x${cp.toString(16).toUpperCase()};`)
+
+      // JavaScript uses \uXXXX for BMP and \u{XXXXX} for supplementary planes
+      if (cp <= 0xffff) {
+        jsOutput.push(`\\u${cp.toString(16).padStart(4, "0")}`)
+      } else {
+        jsOutput.push(`\\u{${cp.toString(16)}}`)
+      }
+
+      cssOutput.push(`\\${cp.toString(16).padStart(4, "0")}`)
+    }
+
+    updateOutput("outputChar", charOutput.join(""))
+    updateOutput("outputDecimal", decimalOutput.join(" "))
+    updateOutput("outputHex", hexOutput.join(" "))
+    updateOutput("outputHtmlDec", htmlDecOutput.join(" "))
+    updateOutput("outputHtmlHex", htmlHexOutput.join(" "))
+    updateOutput("outputJS", jsOutput.join(""))
+    updateOutput("outputCSS", cssOutput.join(""))
+  }
+
+  function convertUnicodeToText(unicodeInput: string) {
+    // Handle various Unicode input formats
+    let text = ""
+
+    // Handle U+XXXX format
+    if (unicodeInput.includes("U+") || unicodeInput.includes("u+")) {
+      const codePoints = unicodeInput.match(/[uU]\+[0-9a-fA-F]{1,6}/g)
+      if (codePoints) {
+        text = codePoints
+          .map((cp) => {
+            const hex = cp.substring(2)
+            return String.fromCodePoint(parseInt(hex, 16))
+          })
+          .join("")
+      }
+    }
+    // Handle \uXXXX format
+    else if (unicodeInput.includes("\\u")) {
+      // Handle both \uXXXX and \u{XXXXX} formats
+      let processedInput = unicodeInput.replace(
+        /\\u\{([0-9a-fA-F]+)\}/g,
+        (match, hex) => {
+          return String.fromCodePoint(parseInt(hex, 16))
+        }
+      )
+
+      processedInput = processedInput.replace(
+        /\\u([0-9a-fA-F]{4})/g,
+        (match, hex) => {
+          return String.fromCodePoint(parseInt(hex, 16))
+        }
+      )
+
+      text = processedInput
+    }
+    // Handle decimal code points
+    else if (/^\s*\d+(\s+\d+)*\s*$/.test(unicodeInput)) {
+      const codePoints = unicodeInput.trim().split(/\s+/)
+      text = codePoints
+        .map((cp) => String.fromCodePoint(parseInt(cp, 10)))
+        .join("")
+    }
+    // Handle hexadecimal without U+ prefix
+    else if (/^\s*[0-9a-fA-F]+(\s+[0-9a-fA-F]+)*\s*$/.test(unicodeInput)) {
+      const codePoints = unicodeInput.trim().split(/\s+/)
+      text = codePoints
+        .map((cp) => String.fromCodePoint(parseInt(cp, 16)))
+        .join("")
+    }
+    // Handle HTML entities
+    else if (unicodeInput.includes("&#")) {
+      // Replace decimal HTML entities
+      let processedInput = unicodeInput.replace(/&#(\d+);/g, (match, dec) => {
+        return String.fromCodePoint(parseInt(dec, 10))
+      })
+
+      // Replace hex HTML entities
+      processedInput = processedInput.replace(
+        /&#x([0-9a-fA-F]+);/g,
+        (match, hex) => {
+          return String.fromCodePoint(parseInt(hex, 16))
+        }
+      )
+
+      text = processedInput
+    }
+
+    if (text) {
+      // Instead of replacing the input, just show the converted text in the output
+      convertTextToUnicode(text)
+
+      // Don't update the input field
+      // const inputElement = document.getElementById("inputText") as HTMLTextAreaElement
+      // if (inputElement) {
+      //   inputElement.value = text
+      //   convertTextToUnicode(text)
+      // }
+    }
+  }
+
+  function updateOutput(id: string, content: string) {
+    const element = document.getElementById(id)
+    if (element) {
+      element.textContent = content
+    }
+  }
+
+  function clearOutputs() {
+    updateOutput("outputChar", "")
+    updateOutput("outputDecimal", "")
+    updateOutput("outputHex", "")
+    updateOutput("outputHtmlDec", "")
+    updateOutput("outputHtmlHex", "")
+    updateOutput("outputJS", "")
+    updateOutput("outputCSS", "")
+  }
+</script>
